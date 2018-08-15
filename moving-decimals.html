@@ -1,0 +1,323 @@
+
+<html>
+    <head>
+
+        <title>Moving Decimal</title>
+        <style>
+            body {
+                font-family: "Helvetica Neue","Helvetica",sans-serif;
+            }
+            #sideways{
+              width:800px;
+              margin:0 auto;
+            }
+            .sideways-text {
+              writing-mode: vertical-rl;
+              transform: rotate(-180deg);
+              display:inline-block;
+              height:200px;
+              padding:0 10px;
+              }
+
+              .digit{
+                text-align:center;
+                margin-top:10px;
+                font-size:25px;
+                padding:0 10px;
+              }
+
+              .milldiv .sideways-text{
+                border:2px solid blue;
+                border-top: 0px;
+              }
+
+              .highlighted .mill.sideways-text{
+                background-color:#dff8f8;
+              }
+              .highlighted .thou.sideways-text{
+                background-color:#ffeadc;
+              }
+              .highlighted .ones.sideways-text{
+                background-color:#fff6f7;
+              }
+              .highlighted .decimals.sideways-text{
+                background-color:#e7f9ed;
+              }
+              .thoudiv .sideways-text{
+                border:2px solid orange;
+                border-top: 0px;
+              }
+
+              .onesdiv .sideways-text{
+                border:2px solid pink;
+                border-top: 0px;
+              }
+              .decimalsdiv .sideways-text{
+                border:2px solid green;
+                border-top: 0px;
+              }
+
+              .groupdiv{
+                display:inline-block;
+              }
+
+              .groupdiv *{
+                pointer-events: none;
+              }
+
+              .col{
+                width:20px;
+                margin:10px;
+                display:inline-block;
+              }
+              .hidden {
+                color:white;;
+              }
+
+              .buttonz{
+                margin:25px;
+                padding:15px;
+                font-size:15px;
+              }
+
+
+        </style>
+    </head>
+    <body>
+        <noscript>
+            You need to enable JavaScript to run this interactive.
+        </noscript>
+
+            <div id="stage">
+              <div id="top-text">
+                <p style="text-align: center;" >Click the buttons to shift the numbers.</p>
+              </div>
+              <div id="sideways">
+                <div class="milldiv groupdiv">
+                  <div id="mill1" class="col"> <div class="mill sideways-text"><span>Hundred Millions</span></div><div class="mill digit"><span>9</span></div></div>
+                  <div id="mill2" class="col"> <div class="mill sideways-text"><span>Ten Millions</span></div><div class="mill digit"><span>9</span></div></div>
+                  <div id="mill3" class="col"> <div class="mill sideways-text"><span>Millions</span></div><div class="mill digit"><span>9</span></div></div>
+                </div>
+
+                <div class="thoudiv groupdiv">
+                  <div id="thou1" class="col"> <div class="thou sideways-text"><span>Hundred Thousands</span></div><div class="thou digit"><span>3</span></div></div>
+                  <div id="thou2" class="col"> <div class="thou sideways-text"><span>Ten Thousands</span></div><div class="thou digit"><span>3</span></div></div>
+                  <div id="thou3" class="col"> <div class="thou sideways-text"><span>Thousands</span></div><div class="thou digit"><span>3</span></div></div>
+                </div>
+
+                <div class="onesdiv groupdiv">
+                  <div id="ones1" class="col"> <div class="ones sideways-text"><span>Hundreds</span></div><div class="ones digit"><span>3</span></div></div>
+                  <div id="ones2" class="col"> <div class="ones sideways-text"><span>Tens</span></div><div class="ones digit"><span>3</span></div></div>
+                  <div id="ones3" class="col"> <div class="ones sideways-text"><span>Ones</span></div><div class="ones digit"><span>3</span></div></div>
+                </div>
+
+                <div class="decimalsdiv groupdiv">
+                  <div id="decimals1" class="col"> <div class="decimals sideways-text"><span>Tenths</span></div><div class="decimals digit"><span>3</span></div></div>
+                  <div id="decimals2" class="col"> <div class="decimals sideways-text"><span>Hundredths</span></div><div class="decimals digit"><span>3</span></div></div>
+                  <div id="decimals3" class="col"> <div class="decimals sideways-text"><span>Thousandths</span></div><div class="decimals digit"><span>3</span></div></div>
+
+                  <div id="decimals4" class="col"> <div class="decimals sideways-text"><span>Ten Thousandths</span></div><div class="decimals digit"><span>3</span></div></div>
+                  <div id="decimals5" class="col"> <div class="decimals sideways-text"><span>Hundred Thousandths</span></div><div class="decimals digit"><span>3</span></div></div>
+                  <div id="decimals6" class="col"> <div class="decimals sideways-text"><span>Millionths</span></div><div class="decimals digit"><span>3</span></div></div>
+
+                  <div id="decimals7" class="col"> <div class="decimals sideways-text"><span>Ten Millionths</span></div><div class="decimals digit"><span>3</span></div></div>
+                  <div id="decimals8" class="col"> <div class="decimals sideways-text"><span>Hundred Millionths</span></div><div class="decimals digit"><span>3</span></div></div>
+                </div>
+
+
+              </div>
+
+
+              <div id="bottom-text">
+                <p style="text-align: center;" >twenty three</p>
+              </div>
+              <div id="buttons">  <p style="text-align: center;" ><button id="left" class="buttonz">LEFT</button> <button id="right" class="buttonz">RIGHT</button></p></div>
+            </div>
+        </div>
+
+<!-- Javascript  -->
+        <script>
+          var writtennumber = [];
+          writtennumber[0] = "Two hundred thirty-five million, four hundred nineteen thousand, eight hundred (and zero tenths)."
+          writtennumber[1] = "Twenty-three million, five hundred forty-one thousand, nine hundred eighty (and zero tenths).";
+          writtennumber[2] = "Two million, three hundred fifty-four thousand, one hundred ninety-eight (and zero tenths).";
+          writtennumber[3] = "Two hundred thirty-five thousand, four hundred nineteen and eight tenths.";
+          writtennumber[4] = "Twenty-three thousand, five hundred forty-one and ninety-eight hundredths.";
+          writtennumber[5] = "Two thousand, three hundred fifty-four and one hundred ninety-eight thousandths.";
+          writtennumber[6] = "Two hundred thirty-five and four thousand, one hundred ninety-eight ten-thousandths.";
+          writtennumber[7] = "Twenty-three and fifty-four thousand, one hundred ninety-eight hundred-thousandths.";
+          writtennumber[8] = "Two and three hundred fifty-four thousand, one hundred ninety-eight millionths.";
+          writtennumber[9] = "Zero and two million, three hundred fifty-four thousand, one hundred ninety-eight ten-millionths.";
+          writtennumber[10] = "Zero and two million, three hundred fifty-four thousand, one hundred ninety-eight hundred-millionths.";
+
+          var writtenmillions = [];
+          writtenmillions[0] = "Two hundred thirty-five million"
+          writtenmillions[1] = "Twenty-three million";
+          writtenmillions[2] = "Two million";
+
+          var writtenthousands = [];
+          writtenthousands[0] = "Four hundred nineteen thousand"
+          writtenthousands[1] = "Five hundred forty-one thousand";
+          writtenthousands[2] = "Three hundred fifty-four thousand";
+          writtenthousands[3] = "Two hundred thirty-five thousand"
+          writtenthousands[4] = "Twenty-three thousand";
+          writtenthousands[5] = "Two thousand";
+
+          var writtenones = [];
+          writtenones[0] = "Eight hundred"
+          writtenones[1] = "Nine hundred eighty";
+          writtenones[2] = "One hundred ninety-eight";
+          writtenones[3] = "Four hundred nineteen";
+          writtenones[4] = "Five hundred forty-one";
+          writtenones[5] = "Three hundred fifty-four";
+          writtenones[6] = "Two hundred thirty-five";
+          writtenones[7] = "Twenty-three";
+          writtenones[8] = "Two";
+
+          var writtendecimals = [];
+          writtendecimals[0] = "(zero tenths)"
+          writtendecimals[1] = "(zero tenths)";
+          writtendecimals[2] = "(zero tenths)";
+          writtendecimals[3] = "Eight tenths";
+          writtendecimals[4] = "Ninety-eight hundredths";
+          writtendecimals[5] = "One hundred ninety-eight thousandths";
+          writtendecimals[6] = "Four thousand, one hundred ninety-eight ten-thousandths";
+          writtendecimals[7] = "Fifty-four thousand, one hundred ninety-eight hundred-thousandths";
+          writtendecimals[8] = "Three hundred fifty-four thousand, one hundred ninety-eight millionths";
+          writtendecimals[9] = "Two million, three hundred fifty-four thousand, one hundred ninety-eight ten-millionths";
+          writtendecimals[10] = "Two million, three hundred fifty-four thousand, one hundred ninety-eight hundred-millionths";
+
+          var position = 4;
+          var defaulttop = "Click the buttons to shift the numbers.";
+
+          var groupdivs = document.getElementsByClassName('groupdiv');
+          var buttons = document.getElementById('buttons');
+          var buttonleft = document.getElementById('left');
+          var buttonright = document.getElementById('right');
+          var digit = document.getElementsByClassName('digit');
+          var fullnumber = document.querySelector("#bottom-text p");
+          var toptext =document.querySelector("#top-text p");
+
+          function buttoning(e) {
+            if(e.target == buttonleft || e.keyCode==37){
+              if(position==0) return;
+              else position--;
+            }
+            else if(e.target == buttonright || e.keyCode==39){
+              if(position==10) return;
+              else position++;
+            }
+            updateEverything(position);
+            checkHighlight();
+          }
+
+          buttons.addEventListener('click', buttoning);
+
+          function showDigits(){
+            for (i = 0; i < digit.length; ++i) {
+               digit[i].classList.remove("hidden");
+             }
+          }
+          function hideDigitRight(num){
+            if(num<10) num=10;
+            while(num<17){
+              digit[num].classList.add("hidden");
+              num++;
+            }
+          }
+          function hideDigitLeft(num){
+            if(num<0) return;
+            if(num>7) num=7;
+            while(num>-1){
+              digit[num].classList.add("hidden");
+              num--;
+            }
+          }
+
+
+          function updateDigits(num){
+
+            hideDigitLeft(num-1);
+            hideDigitRight(num+7);
+
+            digit[num].innerText = "2";
+            digit[num+1].innerText = "3";
+            digit[num+2].innerText = "5";
+            digit[num+3].innerText = "4";
+            digit[num+4].innerText = "1";
+            digit[num+5].innerText = "9";
+            digit[num+6].innerText = "8";
+
+            if(num==0){
+              digit[7].innerText = "0";
+              digit[8].innerText = "0";
+              digit[9].innerText = "0";
+            }
+            else if(num==1){
+              digit[8].innerText = "0";
+              digit[9].innerText = "0";
+            }
+            else if(num==2){
+              digit[9].innerText = "0";
+            }
+            else if(num==9){
+              digit[8].innerText = "0";
+            }
+            else if(num==10){
+              digit[8].innerText = "0";
+              digit[9].innerText = "0";
+            }
+            digit[2].innerText+=",";
+            digit[5].innerText+=",";
+            digit[8].innerText+=".";
+
+          }
+
+          function updateEverything(pos){
+            fullnumber.innerText = writtennumber[pos];
+            showDigits(); //unhide all digits
+            updateDigits(position); //move digits to the correct place and hide the rest
+          }
+
+          function checkHighlight(){
+            var currentHighlight = document.getElementsByClassName('highlighted');
+            if(currentHighlight.length>0){
+              if(currentHighlight[0].classList.contains("milldiv")){
+                if(writtenmillions[position]) toptext.innerText = writtenmillions[position];
+                else toptext.innerText = defaulttop;
+              }
+              else if(currentHighlight[0].classList.contains("thoudiv")){
+                if(writtenthousands[position]) toptext.innerText = writtenthousands[position];
+                else toptext.innerText = defaulttop;
+              }
+              else if(currentHighlight[0].classList.contains("onesdiv")){
+                if(writtenones[position]) toptext.innerText = writtenones[position];
+                else toptext.innerText = defaulttop;
+              }
+              else if(currentHighlight[0].classList.contains("decimalsdiv")){
+                if(writtendecimals[position]) toptext.innerText = writtendecimals[position];
+                else toptext.innerText = defaulttop;
+              }
+            }
+            else{
+              toptext.innerText = defaulttop;
+            }
+          }
+
+          function highlight(e){
+            e.target.classList.toggle("highlighted");
+            checkHighlight();
+          }
+
+          window.addEventListener('keydown', buttoning); //listen for keyboard events
+
+          for (var i = 0; i < groupdivs.length; i++) {
+              groupdivs[i].addEventListener('mouseenter', highlight, false);
+              groupdivs[i].addEventListener('mouseout', highlight, false);
+          }
+
+          buttoning(""); //set initial position
+
+    </script>
+    </body>
+</html>

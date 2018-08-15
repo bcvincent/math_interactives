@@ -1,0 +1,246 @@
+<html>
+    <head>
+
+        <title>Factoring Quad Equations</title>
+        <style>
+            body {
+                font-family: "Helvetica Neue","Helvetica",sans-serif;
+            }
+
+            .equation{
+              display:inline-block;
+            }
+
+            #quadratic, #stepdiv{
+              width: 400px;
+              margin: 0 auto;
+              text-align: center;
+            }
+            #quadratic{
+              margin-bottom:30px;
+            }
+            .steps { padding:10px;}
+
+            #factored, .equation{
+              font-size:40px;
+            }
+            #factored{
+              line-height:5px;
+            }
+
+            .steps{
+              background-color:#05c3de;
+              margin-bottom:10px;
+              color:white;
+            }
+
+            table{
+              margin:0 auto;
+            }
+            button{
+              width:50px;
+              height:25px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <noscript>
+            You need to enable JavaScript to run this interactive.
+        </noscript>
+
+            <div id="stage">
+              <div id="top-text">
+                <p style="text-align: center;" >Use the buttons to change the coefficients and see how the quadratic can be factored.</p>
+              </div>
+              <div id="quadratic">
+
+                  <table>
+	<tbody>
+		<tr id="buttonsUP">
+			<td> </td>
+			<td style="text-align:center"><button id="upB" class="buttonz">UP</button></td>
+			<td style="text-align:center"><button id="upC" class="buttonz">UP</button></td>
+		</tr>
+		<tr>
+			<td><div id="Apart" class="equation">x<sup>2</sup>&nbsp;</div></td>
+			<td><div id="Bpart" class="equation"> +18x&nbsp;</div></td>
+			<td>  <div id="Cpart" class="equation"> +18</div></td>
+		</tr>
+		<tr id="buttonsDOWN">
+			<td> </td>
+			<td style="text-align:center"> <button id="downB" class="buttonz">DOWN</button></td>
+			<td style="text-align:center"> <button id="downC" class="buttonz">DOWN</button></td>
+		</tr>
+	</tbody>
+</table>
+              </div>
+
+
+              <div id="stepdiv">
+                  <div id="step1" class="steps">Step 1: </div>
+
+                  <div id="step2" class="steps">Step 2: </div>
+
+                  <div id="step3" class="steps">The factors are <span id="factors"></span><p id="factored"></p></div>
+
+              </div>
+        </div>
+
+        <!-- Javascript  -->
+  <script>
+                var UPbuttons = document.getElementById('buttonsUP');
+                var DOWNbuttons = document.getElementById('buttonsDOWN');
+                var buttonupB = document.getElementById('upB');
+                var buttonupC = document.getElementById('upC');
+                var buttondownB = document.getElementById('downB');
+                var buttondownC = document.getElementById('downC');
+
+                var partA = document.getElementById('Apart');
+                var partB = document.getElementById('Bpart');
+                var partC = document.getElementById('Cpart');
+                var factored = document.getElementById('factored');
+                var factors = document.getElementById('factors');
+                var step1 = document.getElementById('step1');
+                var step2 = document.getElementById('step2');
+
+
+                //A Var = 1 always.
+                const Avar = 1;
+                var Bvar = 18; //this can range from -18 to 18
+                var Cvar = 0; //this is the index of the Carray that we're displaying
+
+                var Carray = [];
+                Carray[18] = [81]; //index corresponds to the absolute value of the Bvar.  +/- of B doesn't change these options.
+                Carray[17] = [72];
+                Carray[16] = [63,64];
+                Carray[15] = [54,56];
+                Carray[14] = [45,48,49];
+                Carray[13] = [36,40,42];
+                Carray[12] = [27,32,35,36];
+                Carray[11] = [18,24,28,30];
+                Carray[10] = [9,16,21,24,25];
+                Carray[9] = [8,14,18,20];
+                Carray[8] = [-9,7,12,15,16];
+                Carray[7] = [-18,-8,6,10,12];
+                Carray[6] = [-27,-16,-7,5,8,9];
+                Carray[5] = [-36,-24,-14,-6,4,6];
+                Carray[4] = [-45,-32,-21,-12,-5,3,4];
+                Carray[3] = [-54,-40,-28,-18,-10,-4,2];
+                Carray[2] = [-63,-48,-35,-24,-15,-8,-3,1];
+                Carray[1] = [-72,-56,-42,-30,-20,-12,-6,-2];
+
+                function solve(a, b, c) {
+                    var result = (b + Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a);
+                    var result2 = ( b - Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a);
+                    return [result,result2];
+                }
+
+                UPbuttons.addEventListener('click', UPbuttoning);
+                DOWNbuttons.addEventListener('click', DOWNbuttoning);
+
+                function UPbuttoning(e) {
+                  if(e.target == buttonupB){
+                    if(Bvar<18){
+                      Bvar++;
+                      if(Bvar==0) Bvar++;
+                    }
+                    else return;
+                  }
+                  else if(e.target == buttonupC){
+                    if(Cvar < Carray[Math.abs(Bvar)].length - 1){
+                       Cvar = Cvar + 1;
+                    }
+                    else return;
+                  }
+
+                  while(Cvar > Carray[Math.abs(Bvar)].length - 1){
+                     Cvar = Cvar - 1;
+                  }
+                  updateAllText();
+
+                }
+
+                function DOWNbuttoning(e) {
+                  if(e.target == buttondownB){
+                    if(Bvar>-18){
+                      Bvar--;
+                      if(Bvar==0) Bvar--;
+                    }
+                    else return;
+                  }
+                  else if(e.target == buttondownC){
+                    if(Cvar > 0) Cvar--;
+                    else return;
+                  }
+                  while(Cvar > Carray[Math.abs(Bvar)].length - 1){
+                     Cvar = Cvar - 1;
+                  }
+                  updateAllText();
+
+                }
+
+                function prettyText(num){
+                  if(num>0) return "+ " + num;
+                  else return "- " + -num;
+                }
+
+                function updateAllText(){
+                  partB.innerHTML = prettyText(Bvar)+"x&nbsp;";
+                  partC.innerText = prettyText(Carray[Math.abs(Bvar)][Cvar]);
+                  var factorarray = solve(1, Bvar, Carray[Math.abs(Bvar)][Cvar]);
+                  factors.innerText = (factorarray[0])  + " and " + (factorarray[1])+".";
+                  factored.innerText = "(x " + prettyText(factorarray[0]) + ")(x " + prettyText(factorarray[1]) +")";
+
+
+                  if(Bvar < 0 && Carray[Math.abs(Bvar)][Cvar] < 0){
+                     step1.innerText = "Step 1: Since both the Bx & C terms are negative, one binomial adds and the other subtracts.";
+                  }
+                  else if(Bvar < 0 && Carray[Math.abs(Bvar)][Cvar] > 0){
+                     step1.innerText = "Step 1: Since only the Bx term is negative, both binomials use subtraction.";
+                  }
+                  else if(Bvar > 0 && Carray[Math.abs(Bvar)][Cvar] < 0){
+                     step1.innerText = "Step 1: Since only the C term is negative, one binomial adds and the other subtracts.";
+                  }
+                  else{
+                     step1.innerText = "Step 1: Since both the Bx & C terms are positive, both binomials use addition.";
+                  }
+
+                  step2.innerText = "Step 2: Which two factors of " + Carray[Math.abs(Bvar)][Cvar] + " added together equal " + Bvar + "?";
+                  checkButtons();
+                }
+
+                function checkButtons(){
+                  switch(Bvar) {
+                      case 18:
+                          buttonupB.disabled=true;
+                          break;
+                      case -18:
+                          buttondownB.disabled=true;
+                          break;
+                      default:
+                          buttonupB.disabled=false;
+                          buttondownB.disabled=false;
+                  }
+
+                  if(Cvar==Carray[Math.abs(Bvar)].length-1){
+                    buttonupC.disabled=true;
+                  }
+                  else {
+                      buttonupC.disabled=false;
+                  }
+                  if(Cvar==0){
+                    buttondownC.disabled=true;
+                  }
+                  else{
+                    buttondownC.disabled=false;
+                  }
+
+
+                }
+
+                updateAllText();
+
+    </script>
+    </body>
+</html>
