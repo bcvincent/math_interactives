@@ -1,0 +1,260 @@
+
+<html>
+    <head>
+        <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script> -->
+        <title>Exponents</title>
+        <style>
+            body {
+                font-family: "Helvetica Neue","Helvetica",sans-serif;
+                font-size: 1rem;
+            }
+            a{
+                color: #000;
+                margin: .3em;
+                height: 30px;
+            }
+
+            a:hover span{
+              color:lightgray;
+            }
+
+            a:active {
+              transform: translateY(3px);
+            }
+
+            #wrapper {
+              width: 600px;
+              border: solid 1px black;
+              padding: 50px}
+
+            #top {
+              font-size: 25px;
+              width: 600px;
+              display: block;
+              margin: 0 auto 5px;
+            }
+            h5{
+              margin-bottom:0;
+              font-weight:500;
+            }
+            #leftexp { text-align: right; flex-basis: 50%;}
+            #rightexp { text-align: left; flex-basis: 50%;}
+
+            #divider{
+              width: 200px;
+              margin:  0 50px;
+              text-align: center;
+            }
+
+            #bottom{
+                display: flex;
+                align-items: center;
+            }
+            #left, #right {
+              margin:20px;
+                display:flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                width: 300px;
+                border: 1px solid lightgray;
+            }
+            .buttons{
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-around;
+            }
+            .square{
+                width: 60px;
+                display: inline-block;
+                text-align: center;
+                color: #fff;
+                font-weight: bold;
+                font-size: 1.3em;
+                height: 30px;
+
+                -moz-user-select: -moz-none;
+                -khtml-user-select: none;
+                -webkit-user-select: none;
+
+                /*
+                  Introduced in IE 10.
+                  See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+                */
+                -ms-user-select: none;
+                user-select: none;
+            }
+            .bordered {border: solid 2px lightgray;}
+            .blue   { background-color: #2e5fb1; }
+            .green  { background-color: #28aa56; }
+
+            .header {
+              text-align:center;
+            }
+
+            .header .basespan, .header .expspan{
+              font-size:40px;
+              margin:1px;
+            }
+            .header .desc {
+              margin-top:1px;
+              font-size:20px;
+            }
+
+            #footer{
+              margin:0 auto;
+              text-align:center;
+              padding-top:25px;
+              font-size:30px;
+            }
+
+            .basespan{
+              color:#2e5fb1;
+            }
+            .expspan{
+              color:#28aa56;
+            }
+
+        </style>
+    </head>
+    <body>
+        <noscript>
+            You will need to enable JavaScript to run this interactive.
+        </noscript>
+
+<!--  HTML  -->
+        <div id="wrapper">
+            <div id="top" >
+                <div id="toprow"><span class="basespan">9</span><sup class="expspan">2</sup><span id="multiply"> = 9x9</span><span id="product">81</span></div>
+                <div id="botrow"><h5>Click a number for the base and for the exponent to see the result.</h5></div>
+            </div>
+            <div id="bottom">
+                <div id="left">
+                  <div class= "header"><p class="basespan" id="baseText">9</p><p class="desc">base</p></div>
+                  <div class="buttons" id="base">
+                  <a id="1">
+                      <span class="blue square bordered">1</span>
+                  </a>
+                  <a id="2">
+                      <span class="blue square bordered">2</span>
+                  </a>
+                  <a id="3">
+                      <span class="blue square bordered">3</span>
+                  </a>
+                  <a id="4">
+                      <span class="blue square bordered">4</span>
+                  </a>
+                  <a id="5">
+                      <span class="blue square bordered">5</span>
+                  </a>
+                  <a id="6">
+                      <span class="blue square bordered">6</span>
+                  </a>
+                  <a id="7">
+                      <span class="blue square bordered">7</span>
+                  </a>
+                  <a id="8">
+                      <span class="blue square bordered">8</span>
+                  </a>
+                  <a id="9">
+                      <span class="blue square bordered">9</span>
+                  </a>
+                  <a id="0">
+                      <span class="blue square bordered">0</span>
+                  </a>
+                </div>
+                </div>
+
+                <div id="right">
+                  <div class= "header"><p class="expspan" id="exponentText">9</p><p class="desc">exponent</p></div>
+                  <div class="buttons" id="exponents">
+                    <a id="1">
+                        <span class="green square bordered">1</span>
+                    </a>
+                    <a id="2">
+                        <span class="green square bordered">2</span>
+                    </a>
+                    <a id="3">
+                        <span class="green square bordered">3</span>
+                    </a>
+                    <a id="4">
+                        <span class="green square bordered">4</span>
+                    </a>
+                    <a id="5">
+                        <span class="green square bordered">5</span>
+                    </a>
+                    <a id="6">
+                        <span class="green square bordered">6</span>
+                    </a>
+                    <a id="7">
+                        <span class="green square bordered">7</span>
+                    </a>
+                    <a id="8">
+                        <span class="green square bordered">8</span>
+                    </a>
+                    <a id="9">
+                        <span class="green square bordered">9</span>
+                    </a>
+                    <a id="0">
+                        <span class="green square bordered">0</span>
+                    </a>
+                  </div>
+
+                </div>
+            </div>
+            <div id="footer">Nine to the 4 power</div>
+        </div>
+
+<!-- Javascript  -->
+        <script>
+        var exponentButtonDiv = document.getElementById("exponents");
+        var baseButtonDiv = document.getElementById("base");
+        var exponentText = document.getElementById("exponentText");
+        var baseText = document.getElementById("baseText");
+        var exponent = 3;
+        var base = 2;
+        var toprow = document.getElementById("toprow");
+        var footer = document.getElementById("footer");
+
+        var exponentWritten = [" to the zeroth power", " to the first power", " squared", " cubed", " to the fourth power"," to the fifth power", " to the sixth power", " to the seventh power", " to the eighth power", " to the ninth power"];
+        var baseWritten = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
+
+        exponentButtonDiv.addEventListener('click', clicks);
+        baseButtonDiv.addEventListener('click', clicks);
+
+        function clicks(evt){
+          if(evt.target.nodeName!="SPAN") return;
+
+          if(evt.target.classList.contains("green")){ //exponent
+            exponent = evt.target.innerText;
+          }
+          else if(evt.target.classList.contains("blue")){ //base
+            base = evt.target.innerText;
+          }
+          update();
+        }
+
+        function update(){
+          exponentText.innerText = exponent;
+          baseText.innerText = base;
+          footer.innerText = baseWritten[base] + exponentWritten[exponent];
+          var equation = "";
+          if(exponent == 0){
+            equation = "<span id='multiply'> 0</span>";
+          }
+          else{
+            for(var i = 0; i<exponent-1; i++){
+              equation += base + " x ";
+            }
+            equation += base;
+            var quotient = Math.pow(base, exponent);
+            equation = "<span id='multiply'>"+equation+"</span><span id='product'> = "+quotient.toLocaleString()+"</span>";
+          }
+          toprow.innerHTML = "<span class='basespan'>"+base+"</span><sup class='expspan'>"+exponent+"</sup> = "+equation;
+        }
+
+        update(); //initial call
+
+        </script>
+
+    </body>
+</html>
