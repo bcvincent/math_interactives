@@ -1,0 +1,130 @@
+body {
+    font-family: "Helvetica Neue","Helvetica",sans-serif;
+    font-size: 1rem;
+    color:#393939;
+}
+a{
+    color: #000;
+    margin: .3em;
+    height: 30px;
+}
+
+a:hover span{
+  color:lightgray;
+}
+
+a:active {
+  transform: translateY(3px);
+}
+
+#wrapper {
+  width: 600px;
+  padding: 10px}
+
+#top {
+  font-size: 25px;
+  width: 600px;
+  display: block;
+  margin: 0 auto 5px;
+}
+h5{
+  margin:0;
+  padding:10px;
+  font-weight:500;
+}
+#leftexp { text-align: right; flex-basis: 50%;}
+#rightexp { text-align: left; flex-basis: 50%;}
+
+
+#bottom{
+    display: flex;
+    align-items: center;
+}
+#left, #right {
+  margin:20px;
+    display:flex;
+    flex-wrap: wrap;
+}
+#left{
+  width:200px;
+  border: 1px solid lightgray;
+}
+#right{
+  width:400px;
+  text-align:center;
+  margin: 0 auto;
+}
+.buttons{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width:80%;
+  margin: 0 auto;
+}
+.square{
+    width: 30px;
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.3em;
+    height: 30px;
+
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+
+    /*
+      Introduced in IE 10.
+      See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+    */
+    -ms-user-select: none;
+    user-select: none;
+}
+.bordered {border: solid 2px lightgray;}
+.blue   { background-color: #2e5fb1; }
+.green  { background-color: #28aa56; }
+
+.header {
+  text-align:center;
+  font-size:36px;
+  width:100%;
+}
+
+.header .basespan, .header .expspan{
+  margin:1px;
+}
+.header .desc {
+  margin-top:1px;
+  font-size:20px;
+}
+
+.basespan{
+  color:#2e5fb1;
+}
+.expspan{
+  color:#28aa56;
+  font-size:26px;
+}
+#toprow {
+  text-align:center;
+}
+.block{
+  border-top:2px solid #2e5fb1;
+  border-left:2px solid #2e5fb1;
+
+  width:25px;
+  height:25px;
+  box-sizing: border-box;
+  font-size:12px;
+  line-height:25px;
+  color:#242424;
+  background-color:#eaeff7;
+}
+
+.block-right-col{
+  border-right:2px solid #2e5fb1;
+}
+.block-bottom-row{
+  border-bottom:2px solid #2e5fb1;
+}
